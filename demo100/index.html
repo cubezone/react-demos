@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+     <div id="ccom"></div>
+     
+    <script type="text/babel">
+      var Input = React.createClass({
+        getInitialState: function() {
+          return {value: 'Hello!'};
+        },
+        handleChange: function(event) {
+         	this.props.changestate(event.target.value);
+          this.setState({value: event.target.value});
+        },
+        render: function () {
+          var value = this.state.value;
+          return (
+            <div>
+              <input type="text" value={value} width="50%" onChange={this.handleChange} />
+              <p>{value}</p>
+            </div>
+          );
+        }
+      });
+
+	  var Ccom = React.createClass({
+        getInitialState: function() {
+          return {value: this.props.val};
+        },
+        handleChange: function(event) {
+          this.setState({value: event.target.value});         
+        },
+        render: function () {
+          var value = this.state.value;
+          return (
+            <div>
+              name <input type="text" value={value} onChange={this.handleChange} />
+              <br/><br/>
+              id <input type="text" value={value} onChange={this.handleChange} />
+              <p>{value}</p>
+            </div>
+          );
+        }
+      });
+
+		var Al = React.createClass({
+		  	getInitialState: function() {
+          return {value: 'TTT'};
+        },
+        
+        change: function(dat) {
+         /* this.setState({value:dat});*/
+         alert(this.refs.dd.state.value);
+          this.refs.dd.setState({value:dat});
+        },
+        
+		     render: function () {       
+          return (
+            <div>
+              <Input changestate={this.change}/>
+              <Ccom ref="dd" val='dd'/>
+            </div>
+          );
+        }
+ 			});
+
+       ReactDOM.render(<Al><Input /></Al>, document.getElementById('example'));
+   
+    </script>
+  </body>
+</html>
