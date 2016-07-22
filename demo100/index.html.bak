@@ -15,7 +15,7 @@
           return {value: 'Hello!'};
         },
         handleChange: function(event) {
-          /* 调用 parent 的changestate  */
+          /* 调用 parent 的函数  */
          	this.props.changestate(event.target.value);
           this.setState({value: event.target.value});
         },
