@@ -66,12 +66,14 @@
         设置 ref 可以直接作为DOM来使用 */
 		     render: function () {       
           return (
+          <center>
             <div>
             	
               <Input changestate={this.change}/>
-              
+              <br/><br/>z`
               <Com ref="dd" val='dd'/>
             </div>
+           </center> 
           );
         }
  			});
