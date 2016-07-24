@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+	<script>
+    	var sData =
+[
+{
+    name: "a",
+    _class: [1, 102],
+    text: "aaaaaa"
+},
+{
+    name: "b",
+    _class: [2, 120],
+    text: "bbbbb"
+},
+{
+    name: "c",
+    _class: [3, 122],
+    text: "ccccccc"
+}
+];
+
+	for(var i = 0; i < sData.length; i++){
+		var o = sData[i];
+		
+		for(var name in o){
+			if(name == '_class'){
+				for(var j = 0; j < o[name].length;j++){
+					document.write(name + '第:' + j + '个内容是：' + o[name][j] +'<br>');	
+				}	
+			}else
+			document.write(name + ':' + o[name] + '<br>')	
+		}
+	}
+    </script>
+</body>
+</html>

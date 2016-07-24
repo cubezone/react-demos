@@ -16,11 +16,16 @@
         },
         handleChange: function(event) {
           /* µ÷ÓÃ parent µÄchangestate  */
-          var t={aa:'aa',bb:event.target.value};
-          /*var t=new Object();
+          //var t={aa:'aa',bb:event.target.value};
+          var t=new Object();
+          var tempArr=new Array(); 
           t.aa="aa";
           t.bb=event.target.value;
-          */
+          tempArr[0]='0';
+          tempArr[1]='1';
+          tempArr[2]='2';
+          t.cc = tempArr;
+          
           this.props.changestate(t);
          	//this.props.changestate(event.target.value);
           this.setState({value: event.target.value});
@@ -64,7 +69,7 @@
         
         change: function(dat) {
          /* this.setState({value:dat});*/
-         alert(dat.bb);
+         alert(dat.cc);
          //alert(this.refs.dd.state.value);
          //this.refs.dd.setState({value:dat});
         },
