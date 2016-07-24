@@ -16,7 +16,13 @@
         },
         handleChange: function(event) {
           /* 调用 parent 的changestate  */
-         	this.props.changestate(event.target.value);
+          var t={aa:'aa',bb:event.target.value};
+          /*var t=new Object();
+          t.aa="aa";
+          t.bb=event.target.value;
+          */
+          this.props.changestate(t);
+         	//this.props.changestate(event.target.value);
           this.setState({value: event.target.value});
         },
         render: function () {
@@ -58,8 +64,9 @@
         
         change: function(dat) {
          /* this.setState({value:dat});*/
-         alert(this.refs.dd.state.value);
-         this.refs.dd.setState({value:dat});
+         alert(dat.bb);
+         //alert(this.refs.dd.state.value);
+         //this.refs.dd.setState({value:dat});
         },
         
         /* props 传递函数
