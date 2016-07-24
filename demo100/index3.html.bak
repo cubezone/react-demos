@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+     <div id="ccom"></div>
+     
+    <script type="text/babel">
+    
+	    var Comment = React.createClass({
+	 	 render: function() {
+	    return (
+	      <div className="comment">
+	        <h2 className="commentAuthor">
+	         <font color='red' size='5'>  {this.props.author} </font>
+	        </h2>	       
+	      </div>
+	    );
+	  }
+	});
+
+
+      var Input = React.createClass({
+        getInitialState: function() {
+          return {value: 'Hello!'};
+        },
+        handleChange: function(event) {
+          /* 调用 parent 的changestate  */
+          //var t={aa:'aa',bb:event.target.value};
+          var t=new Object();
+          var tempArr=new Array(); 
+          t.aa="aa";
+          t.bb=event.target.value;
+          tempArr[0]='0';
+          tempArr[1]='1';
+          tempArr[2]='2';
+          t.cc = tempArr;
+          
+          this.props.changestate(t);
+         	//this.props.changestate(event.target.value);
+          this.setState({value: event.target.value});
+        },
+        render: function () {
+          var value = this.state.value;
+          return (
+            <div>
+              Input class  <input type="text" value={value} width="50%" onChange={this.handleChange} />
+              <p>{value}</p>
+            </div>
+          );
+        }
+      });
+
+	  var Com = React.createClass({
+        getInitialState: function() {
+          return {value: this.props.val};
+        },
+        handleChange: function(event) {
+          this.setState({value: event.target.value});         
+        },
+        render: function () {
+          var value = this.state.value;
+          return (
+            <div>
+               Com <input type="text" value={value} onChange={this.handleChange} />
+              <br/><br/>
+              id <input type="text" value={value} onChange={this.handleChange} />
+              <p>{value}</p>
+            </div>
+          );
+        }
+      });
+      
+
+   var CommentList = React.createClass({
+  
+		  render: function() {
+		  
+		  	function getdate(){
+		  	return  [ {author:"aaa",id:"bbb",text:"ccc"},
+	       						{author:"bbb",id:"bde",text:"ceff"},
+	       						{author:"ced",id:"bee",text:"cefef"},
+	       						{author:"cee",id:"beee",text:"cfef"},
+	       						{author:"cdddd",id:"bee",text:"cfiif"}
+	       					];
+		  	};
+
+	       					
+		    var commentNodes = getdate().map(function(comment) {
+		      return (
+		        <div>
+		         {comment.author}
+		        </div> 
+		      );
+		    });
+		    return (
+		      <div className="commentList">
+		        {commentNodes}
+		      </div>
+		    );
+		  }
+	});
+
+		/* 包装 2个 对象*/
+		var Al = React.createClass({
+		  	getInitialState: function() {
+          return {value: 'TTT'};
+        },
+ 
+        change: function(dat) {
+         /* this.setState({value:dat});*/
+       
+        var t = 'a';
+        alert(t);
+        
+         //alert(this.refs.dd.state.value);
+         //this.refs.dd.setState({value:dat});
+        },
+        
+       showlist:function(){
+	       var tt = [{author:'a',id:'b'},
+	       						{author:'b',id:'b'},
+	       						{author:'c',id:'b'},
+	       						{author:'d',id:'b'},
+	       					 {author:'e',id:'bb'}
+	       					]
+		     var commentNodes = tt.map(function(comment) {
+			   return ( <Comment author={comment.author} key={comment.id}>
+			          {comment.text}
+			        </Comment>);
+		    	});
+     	 },
+     	 
+
+
+        /* props 传递函数
+        设置 ref 可以直接作为DOM来使用 */
+		     render: function () {    
+		  
+          return (
+          <center>
+            <div>
+            	
+              <Input changestate={this.change}/>
+              <br/><br/>
+              <Com ref="dd" val='dd'/>
+              <CommentList />
+            </div>
+           </center> 
+          );
+        }
+ 			});
+
+       ReactDOM.render(<Al></Al>, document.getElementById('example'));
+       
+    </script>
+  </body>
+</html>
