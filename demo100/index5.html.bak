@@ -4,9 +4,112 @@
     <script src="../build/react.js"></script>
     <script src="../build/react-dom.js"></script>
     <script src="../build/browser.min.js"></script>
+    <script src="../build/vue.js"></script>
   </head>
   <body>
-    <div id="example"></div>
+   <div id="app5" class="demo">      
+	  <input v-model="newTodo" v-on:keyup.enter="addTodo">
+	  <ul>
+	    <li v-for="todo in todos">
+	      <button v-on:click="removeTodo($index)" >X</button>
+	       <span>{{ todo.text }}</span>	     
+	    </li>
+	  </ul>
+	</div>
+	
+	<div id="app6" class="demo">
+	 <ul>
+	    <li v-for="todo in todos">
+	      <span>{{ todo.text }} == ??? ===</span>	      
+	      <span>{{ todo.text }} == 222 ===</span>	 
+	    </li>
+	  </ul>
+	  
+	  <ul>
+       <li v-for="too in todos">
+		     <span>{{ too.text }} == ??? ===</span>	      			      
+		   </li>
+		</ul>	    	
+	</div>
+
+<script>
+
+var a = new Vue({
+  el: '#app5',
+  data: {
+    newTodo: '',
+    todos: [
+      { text: 'Add some todos' }
+    ]
+  },
+  methods: {
+    addTodo: function () {
+      var text = this.newTodo.trim()
+      if (text) {
+        this.todos.push({ text: text })
+        this.newTodo = ''
+      }
+      if (this.todos.length > 20){
+      	this.todos.splice(0, 1)
+      }
+    },
+    addTodos: function () {
+      var text = "111"
+      if (text) {
+        this.todos.push({ text: text })
+        this.newTodo = ''
+      }
+      var text = "112"
+      if (text) {
+        this.todos.push({ text: text })
+        this.newTodo = ''
+      }
+      var text = "113"
+      if (text) {
+        this.todos.push({ text: text })
+        this.newTodo = ''
+      }
+      var text = "114"
+      if (text) {
+        this.todos.push({ text: text })
+        this.newTodo = ''
+      }      
+    },
+    
+    removeTodo: function (index) {
+      this.todos.splice(index, 1)
+    }
+  }
+})
+
+window.onscroll = function(){
+    var t = document.documentElement.scrollTop || document.body.scrollTop;  //离上方的距离
+    var h =window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight; //可见宽度
+    if( t >= document.documentElement.scrollHeight -h ) {
+ //       alert("222");
+        a.addTodos();
+    }
+}
+
+</script>
+
+
+<script>
+new Vue({
+  el: '#app6',
+  data: {
+    newTodo: '',
+    todos: [
+      { text: 'Add some todos1'},
+      {text: 'Add some todos2'},
+      {text: 'Add some todos3'}
+    ]
+  }
+})
+</script>
+
+
+  <div id="example"></div>
      <div id="ccom"></div>
      
     <script type="text/babel">
@@ -151,7 +254,7 @@
               <br/><br/>
               <Com ref="dd" val='dd'/>
               <CommentList />
-              { this.ee()} aa
+              {this.ee()} aa
               {this.showlist()}
             </div>
            </center> 
@@ -162,5 +265,6 @@
        ReactDOM.render(<Al></Al>, document.getElementById('example'));
        
     </script>
+    
   </body>
 </html>

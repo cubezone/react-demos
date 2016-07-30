@@ -105,11 +105,16 @@
 	});
 
 		/* 包装 2个 对象*/
+		
+		function aa(){		
+		return "==";
+		}
+		
 		var Al = React.createClass({
 		  	getInitialState: function() {
           return {value: 'TTT'};
         },
- 
+ 				ee:aa,
         change: function(dat) {
          /* this.setState({value:dat});*/
        
@@ -121,33 +126,33 @@
         },
         
        showlist:function(){
-	       var tt = [{author:'a',id:'b'},
-	       						{author:'b',id:'b'},
-	       						{author:'c',id:'b'},
-	       						{author:'d',id:'b'},
-	       					 {author:'e',id:'bb'}
+	       var tt = [{author:'a',id:'ab'},
+	       						{author:'b',id:'bb'},
+	       						{author:'c',id:'cb'},
+	       						{author:'d',id:'eb'},
+	       					 {author:'e',id:'ebb'}
 	       					]
 		     var commentNodes = tt.map(function(comment) {
-			   return ( <Comment author={comment.author} key={comment.id}>
+			   return ( <Comment author={comment.author } key={comment.id}>
 			          {comment.text}
 			        </Comment>);
 		    	});
+		      return 	commentNodes;
      	 },
      	 
-
-
         /* props 传递函数
         设置 ref 可以直接作为DOM来使用 */
 		     render: function () {    
 		  
           return (
           <center>
-            <div>
-            	
+            <div>            	
               <Input changestate={this.change}/>
               <br/><br/>
               <Com ref="dd" val='dd'/>
               <CommentList />
+              {this.ee()} aa
+              {this.showlist()}
             </div>
            </center> 
           );
